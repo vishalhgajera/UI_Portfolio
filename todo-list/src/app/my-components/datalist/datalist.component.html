@@ -1,0 +1,17 @@
+<div class="my-2 w-85 px-3 list list-hover">
+<ol style="padding-right: 30px;">
+    <li class="d-flex align-items-start p-3">
+      <div class="ms-2 me-auto">
+        <h6 class="fw-bold inline me-4 user-select-none" [ngClass]="{'strike': !vishal.active}">{{Index+1}}</h6>
+        <h6 class="fw-bold inline user-select-none" style="text-transform: uppercase;" [ngClass]="{'strike': !vishal.active}">{{vishal.items}}</h6>
+        <h6 class="user-select-none" style="margin-left: 34px; text-transform: capitalize;" [ngClass]="{'strike': !vishal.active}"> {{vishal.desc}}</h6>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="{{vishal.idno}}" value="option1" (click)="checkBox(vishal.idno)" [checked]="!vishal.active" >
+            <label style="margin-left: 10px;" class="form-check-label user-select-none" for="{{vishal.idno}}">Mark as Done</label>
+        </div>
+      </div>
+      <button class="btn btn-outline-success btn-sm my-2" (click)="editit(vishal.idno)" >Edit</button>
+      <button class="btn btn-outline-success btn-sm mx-3 my-2" (click)="deleteit(vishal.idno)">Delete</button>
+    </li>
+  </ol>
+</div> 

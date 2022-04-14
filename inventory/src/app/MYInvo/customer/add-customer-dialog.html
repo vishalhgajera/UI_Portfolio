@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>Add New Customer</h1>
+<form [formGroup]="customerForm" (ngSubmit)="okClick()">
+<div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Customer Name</mat-label>
+      <input matInput formControlName="customName" required="true" minlength="4">
+      <mat-error *ngIf="customerForm.controls['customName'].invalid">
+        Customer name is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+<div mat-dialog-content>
+    <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Mobile No.</mat-label>
+        <input matInput type="tel"  pattern="[0-9]{10}" class="example-right-align" placeholder="9624204111" minlength="10" matInput formControlName="mobileNo" required>
+        <span matPrefix>+91&nbsp;</span>
+        <mat-error *ngIf="customerForm.controls['mobileNo'].errors?.['required']">
+          Mobile No. is required
+        </mat-error>
+        <mat-error *ngIf="customerForm.controls['mobileNo'].errors?.['minlength']">
+        Mobile No. should be 9999999999 pattern
+        </mat-error>
+      </mat-form-field>
+  </div>
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="address" required="true" minlength="4">
+      <mat-error *ngIf="customerForm.controls['address'].invalid">
+        Address is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>GST Number</mat-label>
+      <input matInput formControlName="gstNo" required="false" minlength="12">
+      <mat-error *ngIf="customerForm.controls['gstNo'].invalid">
+        GST no. should be 12 letters
+      </mat-error>
+    </mat-form-field>
+  </div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button type="submit" cdkFocusInitial>Ok</button>
+</div>
+</form>

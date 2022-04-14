@@ -1,0 +1,31 @@
+<div class="w-85 p-5 todos">
+  <form (ngSubmit)="onSubmit()">
+    <div class="mb-5">
+      <label for="title" class="form-label">What you want To Do</label>
+      <input type="hidden" name="idno" [(ngModel)]="idno">
+      <input type="text" class="form-control" id="items" name="items" [(ngModel)]="items" style="box-shadow: inset 3px 4px 8px 1px rgb(184 183 183);" placeholder="Enter Todo title">
+      <!-- <div class="form-text">Todos title write here</div> -->
+    </div>
+    <div class="mb-3">
+      <label for="desc" class="form-label">What you want To Do</label>
+      <input type="text" class="form-control" style="box-shadow: inset 3px 4px 8px 1px rgb(184 183 183);" id="desc" name="desc" [(ngModel)]="desc" placeholder="Enter  Description">
+    </div>
+    <div class="mt-4 pe-4">
+      <button type="submit" class="btn btn-outline-success btn-sm button">Submit</button>
+      <button type="button" class="btn btn-outline-success btn-sm mx-3 button" (click)="resetData()">Reset</button>
+      <button type="button" class="btn btn-outline-success btn-sm px-3 float-end button" (click)="clearData()">Clear Todo
+        List</button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="todos.length==0;">
+  <div class="text-center">
+    No todos for display
+  </div>
+</div>
+
+<ng-container *ngFor="let data of todos; let t = index;">
+  <app-datalist [todoIndex]="t" [vishal]="data" (eventDelete)="deleteData($event)" (eventEdit)="editData($event)"
+    (eventCheck)="checkData($event)"></app-datalist>
+</ng-container>

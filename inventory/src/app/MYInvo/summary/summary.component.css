@@ -1,0 +1,24 @@
+.bg-color{
+    background-color: #43657a;
+}
+.example-form {
+    min-width: 500px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+.w-90{
+    width: 85vw;
+}
+.fw-bold{ 
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+
+
+
+

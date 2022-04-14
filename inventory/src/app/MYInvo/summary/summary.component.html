@@ -1,0 +1,150 @@
+<form [formGroup]="invoiceForm">
+    <mat-dialog-content class="mat-typography ">
+        <div class=" mt-1 row g-5  m-auto" style="border-radius: 5px;">
+            <div class="col-12 mt-4 fs-5 fw-bold m-auto text-center list-group-item list">Invoice</div>
+            <div class="col-7 ">
+                <div class="fw-bold"></div>
+            </div>
+            <div class="col-4">
+                <div class="fw-bolder text-end mt-3"> Invoice No.</div>
+            </div>
+            <div class="col-1">
+                <div class="fw-bolder my-3">{{invoiceItems.invoiceId}}</div>
+            </div>
+        </div>
+        <div class="row g-5 m-auto">
+            <div class="col-2 list-group-item list rounded">
+                <div class="fw-bold my-2 text-end">Customer Name</div>
+            </div>
+            <div class="col-3 list-group-item list-item rounded">
+                <div class="">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <input type="text" name="customer" placeholder="Select Customer" matInput
+                            [matAutocomplete]="customerAuto" formControlName="customId"
+                            required="true">
+                       
+                        <mat-autocomplete #customerAuto="matAutocomplete" (optionSelected)="selected($event)"
+                            [displayWith]="displayFn(customerList)">
+                            <mat-option *ngFor="let option of filteredCustomer | async; let ic=index"
+                                [value]="option.customId">
+                                {{option.customName }}
+                            </mat-option>
+                        </mat-autocomplete>
+                       
+                       
+                    </mat-form-field>
+                    <mat-error *ngIf="invoiceForm.controls['customId'].invalid">
+                        Customer name is required
+                    </mat-error>
+                    <mat-error *ngIf="invoiceForm.controls['customId'].valid && invoiceForm.controls['customName'].invalid">
+                        Customer name is not valid
+                    </mat-error>
+                </div>
+            </div>
+            <div class="col-2">
+                <!-- <div class="fw-bold">custumer Id : {{myCustomer.value}}</div> -->
+            </div>
+            <div class="col-2 list-group-item list rounded">
+                <div class="fw-bold mt-2 text-end">Date</div>
+            </div>
+            <div class="col-3 list-group-item list-item rounded">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <input type="date" formControlName="date" name="date" placeholder="Select Date" matInput required="">
+                </mat-form-field>
+                <mat-error *ngIf="invoiceForm.controls['date'].invalid">
+                    Date is required
+                </mat-error>
+            </div>
+        </div>
+        <div class="mt-1 row g-5 m-auto">
+            <div class="col-1 list-group-item list" style="border-radius: 5px;">
+                <div class="fw-bold">Sr No.</div>
+            </div>
+            <div class="col-2 list-group-item list">
+                <div class="fw-bold">Product Id</div>
+            </div>
+            <div class="col-2 list-group-item list">
+                <div class="fw-bold"> Product Name</div>
+            </div>
+            <div class="col-2 list-group-item list">
+                <div class="fw-bold">Quntity</div>
+            </div>
+            <div class="col-2 list-group-item list">
+                <div class="fw-bold">Price</div>
+            </div>
+            <div class="col-2 list-group-item list">
+                <div class="fw-bold">Total</div>
+            </div>
+            <div class="col-1 list-group-item list" style="border-radius: 5px;">
+                <div class="fw-bold">Delete </div>
+            </div>
+        </div>
+        <ng-container formArrayName="productItems">
+        <ng-container  *ngFor="let productItem of productItems.controls; let i = index">
+            <div class="row g-5 m-auto" [formGroupName]="i">
+                <div class="col-1 list-group-item list-item" style="border-radius: 5px;">
+                    <div class="mt-2">{{i+1}}</div>
+                </div>
+                <div class="col-2 list-group-item list-item">
+                     <div class="mt-2">{{productItems.controls[i].value.proId}}</div> 
+                </div>
+                <div class="col-2 list-group-item list-item">
+                    <div class="">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-select  formControlName="proId"
+                                (selectionChange)="updateProductDetails($event.value,i)" placeholder="Select Product">
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let option of productList" [value]="option.proId">
+                                    {{option.proName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-2 list-group-item list-item">
+                    <div class="">
+
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <input type="number" formControlName="quantity" placeholder="Select Product" required aria-label="Number" matInput>
+                        </mat-form-field>
+                        <mat-error *ngIf="productItems.controls[i].get('quantity')?.errors?.['max']">
+                            Quantity should be less than existing stock
+                        </mat-error>
+                    </div>
+                </div>
+                <div class="col-2 list-group-item list-item">
+                    <div class="mt-2">
+                        <input type="number" formControlName="price" placeholder="Select Price" aria-label="Number"
+                            matInput>
+
+                    </div>
+                </div>
+                <div class="col-2 list-group-item list-item">
+                     <div class="mt-2">{{productItems.controls[i].value.price * productItems.controls[i].value.quantity}}</div> 
+                </div>
+                <div class="col-1 list-item" color="primary" mat-icon-button>
+                    <mat-icon class="mt-2" color="warn" (click)="deleteItems(i)">delete</mat-icon>
+                </div>
+            </div>
+        </ng-container>
+        </ng-container>
+        <mat-error *ngIf="invoiceForm.controls['productItems'].invalid && invoiceForm.dirty">
+            At least one product Item is required to create invoice Or added item should not empty
+        </mat-error>
+        <div class="col-3 mt-2">
+            <button mat-raised-button (click)="addItems()" class="button">Add items</button>
+        </div>
+        <div class="row g-5 m-auto mb-5 mt-2">
+            <div class="col-10 list-group-item list rounded">
+                <div class="fw-bold mt-2 text-end">Grand Total</div>
+            </div>
+            <div class="col-2 list-group-item list-item rounded">
+                <div class="fw-bold mt-2 text-end">{{grandTotal()}}</div>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button  (click)="onNoClick()">Cancel</button>
+        <button mat-button  (click)="okClick()">Save</button>
+    </mat-dialog-actions>
+</form>

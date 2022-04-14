@@ -1,0 +1,56 @@
+<div>
+    <div>
+        <div class="mt-5 fs-5 w-90 m-auto fw-bold">Invoice</div>
+    </div>
+    <div class="my-4 row fs-5 fw-bold w-90 m-auto">
+            <div class="col-2">
+                <button mat-raised-button (click)="createInvoice()" class="button">Create Invoice</button>
+            </div>
+    </div>
+    <div class=" mt-2 row g-5 w-90 m-auto">
+        <div class="col-2 list-group-item list" style="border-radius: 5px;">
+            <div class="fw-bold">Invoice No.</div>
+        </div>
+        <div class="col-2 list-group-item list">
+            <div class="fw-bold">Date</div>
+        </div>
+        <div class="col-3 list-group-item list">
+            <div class="fw-bold">Name</div>
+        </div>
+        <div class="col-2 list-group-item list">
+            <div class="fw-bold">Total Bill Amount</div>
+        </div>
+        <div class="col-1 list-group-item list">
+            <div class="fw-bold">View</div>
+        </div>
+        <div class="col-1 list-group-item list">
+            <div class="fw-bold">Edit</div>
+        </div>
+        <div class="col-1 list-group-item list" style="border-radius: 5px;">
+            <div class="fw-bold">Delete</div>
+        </div>
+    </div>
+    <div class="row g-5 w-90 m-auto" *ngFor="let value of invoice; let i = index">
+        <div class="col-2 list-group-item list-item" style="border-radius: 5px;"> 
+            <div class="fw-bold">{{value.invoiceId}}</div>
+        </div>
+        <div class="col-2 list-group-item list-item">
+            <div class="">{{value.date | date:'dd-MM-yyyy' }}</div>
+        </div>
+        <div class="col-3 list-group-item list-item">
+            <div class="">{{value.customName}}</div>
+        </div>
+        <div class="col-2 list-group-item list-item">
+            <div class="">{{value.totalBill}}</div>
+        </div>
+        <div class="col-1 list-item"  mat-icon-button>
+            <mat-icon class="mt-2" color="primary" (click)="viewInvoice(i)">preview</mat-icon>
+        </div>
+        <div class="col-1 list-item"  mat-icon-button>
+            <mat-icon class="mt-2" color="primary" (click)="editInvoice(i)">edit</mat-icon>
+        </div>
+        <div class="col-1 list-item"  mat-icon-button>
+            <mat-icon class="mt-2" color="warn" (click)="deleteInvoice(i)">delete</mat-icon>
+        </div>
+    </div>
+</div>

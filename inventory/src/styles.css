@@ -1,0 +1,72 @@
+:root {
+    --blue: #15546b;
+    --white: #ffffff;
+    --lightblue:#15546bdc;
+    --second : rgba(161, 196, 205, 0.532);
+}
+
+.button{
+    background-color: rgba(183, 192, 194, 0.6);;
+    /* color: white; */
+}
+
+/* You can add global styles to this file, and also import other style files */
+body{
+    padding-bottom:25vh;
+    padding-top:9vh;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-form-field-appearance-outline .mat-form-field-flex { background: white; border-radius: 5px;}
+.mat-form-field-appearance-outline .mat-form-field-outline {top: 0px !important; }
+.mat-form-field-appearance-outline .mat-form-field-wrapper { margin: 0;}
+.mat-form-field-appearance-outline .mat-form-field-infix { padding: 8px 0; border-top: 0;}
+.mat-form-field-appearance-outline .mat-form-field-wrapper{padding-bottom:0}
+
+.bg-color{
+    background-color: var(--blue);
+}
+
+.fw-bold { font-weight: normal !important;}
+
+.list{
+    /* background-color:var(--lightblue); */
+    background-image: linear-gradient(#276d82 60%,#266881);
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0.5px 1px 1px 0 #073545;
+    border: 1px solid #15546b ;
+}
+
+.list-item{
+    /* background-color: var(--second); */
+    background-image: linear-gradient(rgba(200, 209, 211, 0.653) 60%,rgba(183, 192, 194, 0.6));
+    border-radius: 5px;
+    box-shadow: 0.5px 1px 1px 0 #7e8d92;
+    border: 1px solid rgba(179, 186, 188, 0.532) ;
+}
+
+.row>* { margin-top: 2px;}
+
+.fixed-top { z-index: 2;}
+.fixed-bottom { z-index: 5;}
+
+@media print {
+
+       
+   .mat-dialog-actions {display: none;}
+   
+   .cdk-global-overlay-wrapper .cdk-overlay-pane {
+      max-width: 100vw !important;
+      top: 0;
+      height: 100vh;
+  }
+  .cdk-global-overlay-wrapper .mat-dialog-container { overflow: hidden;}
+  .fixed-top { display: none;}
+  
+  footer { display: none;}
+   }
+   
+
+     
+   

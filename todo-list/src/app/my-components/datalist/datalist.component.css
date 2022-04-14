@@ -1,0 +1,38 @@
+.w-85 {
+    width: 85%;
+    margin: auto;
+}
+
+.inline{
+    display: inline;
+}
+
+.bg-color{
+    background-color: rgb(47, 84, 76);
+    }
+
+.color{
+    color: white;
+}
+
+.checkcolor:checked{
+    background-color:  rgba(47, 84, 76, 0.874);
+}
+
+.list{
+    background-color: white; box-shadow: -5px -22px 106px -11px #d5d5d5, -1px 3px 16px 3px #898989;
+    border-radius: 5px;
+}
+
+.list-hover:hover{
+background-color: rgb(228, 228, 228);
+}
+
+.strike{
+    text-decoration: line-through;
+}
+
+.button {
+    background-image: linear-gradient(rgb(101, 145, 128), rgb(72, 101, 91));
+    box-shadow: 1px 1px 1px 1px lightgrey;
+}

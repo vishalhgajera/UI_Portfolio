@@ -1,0 +1,59 @@
+<div class="">
+    <div>
+        <div class="mt-5 fs-5 w-90 m-auto fw-bold">Customer</div>
+    </div>
+    <div class="my-4 row fs-5 fw-bold w-90 m-auto">
+            <div class="col-2">
+                <button mat-raised-button (click)="addCustomer()" class="button">Add Customer</button>
+            </div>
+    </div>
+    <div class=" mt-2 row g-5 w-90 m-auto">
+        <div class="col-1 list-group-item list" style="border-radius: 5px;">
+            <div class="fw-bold">Customer Id</div>
+        </div>
+        <div class="col-2 list-group-item list">
+            <div class="fw-bold">Name</div>
+        </div>
+        <div class="col-3 list-group-item list">
+            <div class="fw-bold">Address</div>
+        </div>
+        <div class="col-2 list-group-item list">
+            <div class="fw-bold">Mobile No.</div>
+        </div>
+        <div class="col-2 list-group-item list">
+            <div class="fw-bold">GST No.</div>
+        </div>
+        <div class="col-1 list-group-item list">
+            <div class="fw-bold">Edit</div>
+        </div>
+        <div class="col-1 list-group-item list" style="border-radius: 5px;">
+            <div class="fw-bold">Delete</div>
+        </div>
+    </div>
+    <div class="row g-5 w-90 m-auto" *ngFor="let value of customer; let i=index">
+        <div class="col-1 list-group-item list-item" style="border-radius: 5px;">
+            <div class="fw-bold">{{value.customId}}</div>
+        </div>
+        <div class="col-2 list-group-item list-item">
+            <div class="">{{value.customName}}</div>
+        </div>
+        <div class="col-3 list-group-item list-item">
+            <div class="">{{value.mobileNo}}</div>
+        </div>
+        <div class="col-2 list-group-item list-item">
+            <div class="">{{value.address}}</div>
+        </div>
+        <div class="col-2 list-group-item list-item">
+            <div class="">{{value.gstNo}}</div>
+        </div>
+        <div class="col-1 list-item">
+            <button color="primary" mat-icon-button (click)="editCustomer(i)">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </div>
+        <div  class="col-1 list-item">
+            <button color="warn" mat-icon-button (click)="deleteCustomer(i)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>

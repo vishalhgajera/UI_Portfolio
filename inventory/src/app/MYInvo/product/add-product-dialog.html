@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Add New Product</h1>
+<form [formGroup]="productForm" (ngSubmit)="okClick()">
+<div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Product Name</mat-label>
+      <input matInput  formControlName="proName" required="true" minlength="4">
+      <mat-error *ngIf="productForm.controls['proName'].invalid">
+        Product name is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+<div mat-dialog-content>
+    <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Quantity</mat-label>
+        <input matInput type="number" class="example-right-align" placeholder="0" min="1" matInput formControlName="quantity" required>
+        <mat-error *ngIf="productForm.controls['quantity'].errors?.['required']">
+          Quantity  is required
+        </mat-error>
+        <mat-error *ngIf="productForm.controls['quantity'].errors?.['min']">
+          Quantity  should be at least  minimum 1
+        </mat-error>
+      </mat-form-field>
+  </div>
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Price</mat-label>
+        <input matInput type="number" class="example-right-align" placeholder="0" matInput formControlName="price" required="true">
+        <span matPrefix>Rs&nbsp;</span>
+        <span matSuffix>.00</span>
+        <mat-error *ngIf="productForm.controls['price'].invalid">
+          Price is required
+        </mat-error>
+      </mat-form-field>
+  </div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button type="submit" cdkFocusInitial>Ok</button>
+</div>
+</form>

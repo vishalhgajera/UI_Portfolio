@@ -1,0 +1,37 @@
+
+<div class="w-100 h-100">
+    <div class="text-center mt-3 fw-bolder">
+        <div class="fs-5 my-2">Company Name</div>
+        <div>F-24, Garden Street, opp. white Town, City- 100001 <br> Contact : 9624204111</div>
+        <div class="col-12 border-bottom mb-3 pt-2"></div>
+    </div>
+    <div class="m-3 fw-bolder"> 
+        <div>Invoice No. : {{data.invoiceId}}</div>
+        <div>Date : {{data.date}}</div>
+        <div>Customer Name : {{data.customName}}</div>
+    </div>
+    <div class="border-top mt-3 pt-2 row g-5 m-auto">
+        <div class="col-1 fw-bolder text-end"><div>Sr No.</div></div>
+        <div class="col-1 fw-bolder text-end"><div>Prod Id</div></div>
+        <div class="col-4 fw-bolder"><div>Product Name</div></div>
+        <div class="col-2 fw-bolder text-end"><div>Quntity</div></div>
+        <div class="col-1 fw-bolder text-end"><div>Price</div></div>
+        <div class="col-2 fw-bolder text-end"><div>Total</div></div>
+        <div class="col-12 border-bottom mb-3 pt-2"></div>
+    </div>
+    <div class="mt-1 row g-5 m-auto" *ngFor="let items of data.productItems; let i = index">
+        <div class="col-1 fw-bolder text-end">{{i+1}}</div>
+        <div class="col-1 text-end">{{items.proId}}</div>
+        <div class="col-4">{{items.proName}}</div>
+        <div class="col-2 text-end">{{items.quantity}}</div>
+        <div class="col-1 text-end">{{items.price}}</div>
+        <div class="col-2 text-end">{{items.quantity*items.proId}}</div>
+    </div>
+    <div class="mt-5 row g-5 m-auto">
+    <div class="col-11 text-end border-top fw-bolder py-3" >Grand Total : {{data.totalBill}}</div>
+    </div>
+</div>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close (click)="onNoClick()">Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="printInvoice()">Print Invoice</button>
+   </mat-dialog-actions>

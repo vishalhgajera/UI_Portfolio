@@ -1,0 +1,14 @@
+.bg-color{
+    background-color: rgb(47, 84, 76);
+    }
+
+    .w-85 {
+        width: 85%;
+        margin: auto;
+    }
+
+.todos{margin-bottom: 50px;
+    margin-top: 50px;
+    box-shadow: -5px -22px 106px -11px #d5d5d5, -1px 3px 16px 3px #898989;background-color: white;
+    border-radius: 5px;
+}
